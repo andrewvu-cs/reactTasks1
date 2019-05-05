@@ -13,10 +13,16 @@ class App extends Component {
     this.setState({userInput: event.target.value})
   ]
 
+  deleteCharHandler = (index) =>{
+    let text = this.state.userInput.split('');
+    text.splice(index, 1);
+    let updatedText = text.join('');
+    this.setState({userInput: updatedText});
+  }
 
   render() {
     const charList = this.state.userInput.split('').map((ch, index) =>{
-      return <Char character={ch} index={index}/>
+      return <Char character={ch} index={index} clicked={() =>this.deleteCharHandler(index)}/>;
     })
 
     return (
@@ -31,7 +37,7 @@ class App extends Component {
         </ol>
         <p>Hint: Keep in mind that JavaScript strings are basically arrays!</p>
         <hr/>
-        <input type="text" onChange={this.userInputHandler} />
+        <input type="text" onChange={this.userInputHandler} value={this.state.userInput}/>
         <Validation input={this.state.userInput}/>
         {charList}
       </div>

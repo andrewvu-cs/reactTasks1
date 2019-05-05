@@ -10,7 +10,7 @@ const character = (props) => {
     }
 
     return(
-        <div style={style}>{props.character} </div>
+        <div style={style} onClick={props.clicked}>{props.character} </div>
         );
 }
 
