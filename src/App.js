@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 
 import Validation from './Validation/Validation';
+import Char from './Char/Char';
 
 class App extends Component {
   state = {
@@ -14,6 +15,10 @@ class App extends Component {
 
 
   render() {
+    const charList = this.state.userInput.split('').map((ch, index) =>{
+      return <Char character={ch} index={index}/>
+    })
+
     return (
       <div className="App">
         <ol>
@@ -28,6 +33,7 @@ class App extends Component {
         <hr/>
         <input type="text" onChange={this.userInputHandler} />
         <Validation input={this.state.userInput}/>
+        {charList}
       </div>
 
     );
